@@ -1,0 +1,50 @@
+.success{
+  position: fixed;
+  box-sizing: border-box;
+  background-color: white;
+  z-index: 2;
+  height: 100vh;
+  padding: 1.5rem;
+  display: grid;
+  // flex-direction: column;
+  // justify-content: center;
+  grid-template-rows: repeat(8,1fr);
+  color: $slate-grey;
+  // min-height: 500px;
+
+  .smain{
+    grid-row-start: 1;
+    grid-row-end: 8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // place-content: center;
+
+    h1{
+      @extend %h1;
+    }
+    p{
+      font-size: .9rem;
+
+      span{
+        font-weight: bold;
+      }
+    }
+  }
+
+  img{
+    display: block;
+    width: 12%;
+    margin: 2rem 0;
+  }
+
+  .button{
+    // margin-top: auto;
+    display: flex;
+
+    .dismiss{
+      @extend %btn;
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,77 @@
+.section1{
+  display: flex;
+  place-content: center;
+}
+.headerImg{
+  width: 100%;
+}
+
+.section2{
+  // font-size: 1%;
+  padding: 1.5rem;
+  color: $slate-grey;
+
+  h1{
+    @extend %h1;
+    // color: $slate-grey;
+  }
+  p{
+    font-size: .9rem;
+  }
+
+  table{
+    display: flex;
+    place-content: top;
+
+    tr{
+      // background-color: aqua;
+      // border-left: 2px solid black;
+      display: flex;
+      flex-direction: row;
+      margin-bottom: .5rem;
+      // align-items: ;
+
+      img{
+        // display: inline-block;
+        display: block;
+        margin-right: .6rem;
+        width: 60%;
+      }
+      p{
+        display: block;
+        font-size: .9rem;
+      }
+    }
+  }
+  .desc{
+    margin-bottom: 1rem;
+  }
+
+  form{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    legend{
+      font-size: .7rem;
+      font-weight: bold;
+      margin-bottom: -.5rem;
+    }
+
+    .email{
+      height: 2.5rem;
+      border: 1px $grey solid;
+      border-radius: .5rem;
+      margin: 1rem 0;
+      padding-left: 1rem;
+
+      &::placeholder{
+        color: $grey;
+      }
+    }
+    .submit{
+      @extend %btn;
+    }
+  }
+}
