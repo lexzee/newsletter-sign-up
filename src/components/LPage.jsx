@@ -1,8 +1,43 @@
 import React from 'react'
 import imgMobile from '../images/illustration-sign-up-mobile.svg'
 import listIcon from '../images/icon-list.svg'
+import { useState } from 'react'
 
 const LPage = () => {
+  const [value, setValue] = useState('')
+  const [submitted, setSubmitted] = useState(false)
+  const [alert, setAlert] = useState({
+    isTrue: false,
+    value: ""
+  })
+  const validEmail = new RegExp(`^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$`)
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    value && setAlert(false);
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(value === ''){
+      setAlert(state => {
+        return ({
+          ...state,
+          isTrue: !state.isTrue,
+          value: "field can not be empty!"
+        })
+      })
+    } else if(!validEmail.test(value)){
+      setAlert(state => {
+        return({
+          ...state,
+          isTrue: !state.isTrue,
+          value: 'enter valid email address!',
+        })
+      })
+    } else {
+      setSubmitted(true)
+    }
+  }
   const data = [
     {
       id: 1,
@@ -29,7 +64,7 @@ const LPage = () => {
 
   return (
     <>
-      <div className="success">
+      <div className={`success ${!submitted && 'hidden'}`}>
         <div className='smain'>
           <img src={listIcon} alt="" />
           <h1>Thanks for subscribing!</h1>
@@ -38,10 +73,16 @@ const LPage = () => {
           </p>
         </div>
         <div className="button">
-          <button className="dismiss">Dismiss message</button>
+          <button
+            className="dismiss"
+            onClick={()=> {
+              setSubmitted(false)
+              setValue('')
+            }}
+          >Dismiss message</button>
         </div>
       </div>
-      <div className="main">
+      <div className={`main ${submitted && 'hidden'}`}>
         <div className="section1">
           <img src={imgMobile} alt="Header Image" className="headerImg" />
         </div>
@@ -61,8 +102,22 @@ const LPage = () => {
           </div>
           <form action="#" method="post" className='newsletter'>
             <legend>Email address</legend>
-            <input type="email" name="email" id="email" className='email' placeholder='email@company.com' />
-            <button className='submit'>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              className='email'
+              placeholder='email@company.com'
+              value={value}
+              onChange={handleChange}
+            />
+              <p className={`alert ${!alert.isTrue && 'hidden'}`}>
+                {alert.value}
+              </p>
+            <button
+              className='submit'
+              onClick={handleSubmit}
+            >
               Subscribe to monthly newsletter
             </button>
           </form>

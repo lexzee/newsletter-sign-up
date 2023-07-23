@@ -24,15 +24,11 @@
     place-content: top;
 
     tr{
-      // background-color: aqua;
-      // border-left: 2px solid black;
       display: flex;
       flex-direction: row;
       margin-bottom: .5rem;
-      // align-items: ;
 
       img{
-        // display: inline-block;
         display: block;
         margin-right: .6rem;
         width: 60%;
@@ -69,6 +65,12 @@
       &::placeholder{
         color: $grey;
       }
+    }
+    .alert{
+      color: red;
+      margin: -1rem 0 1rem 0;
+      font-size: .6rem;
+      font-style: italic
     }
     .submit{
       @extend %btn;
