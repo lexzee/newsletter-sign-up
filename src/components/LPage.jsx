@@ -1,9 +1,12 @@
 import React from 'react'
 import imgMobile from '../images/illustration-sign-up-mobile.svg'
+import imgDesktop from '../images/illustration-sign-up-desktop.svg'
 import listIcon from '../images/icon-list.svg'
 import { useState } from 'react'
+import { useEffect } from 'react'
 
 const LPage = () => {
+  const [isMobile, setIsMobile] = useState(false)
   const [value, setValue] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [alert, setAlert] = useState({
@@ -12,6 +15,17 @@ const LPage = () => {
   })
   const validEmail = new RegExp(`^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$`)
 
+  useEffect(() => {
+    const handleView = () => {
+      setIsMobile(window.innerWidth < 780);
+    };
+    handleView();
+
+    window.addEventListener("resize", handleView);
+    return () => {
+      window.removeEventListener("resize", handleView);
+    }
+  }, [])
   const handleChange = (e) => {
     setValue(e.target.value);
     value && setAlert(false);
@@ -84,7 +98,7 @@ const LPage = () => {
       </div>
       <div className={`main ${submitted && 'hidden'}`}>
         <div className="section1">
-          <img src={imgMobile} alt="Header Image" className="headerImg" />
+          <img src={isMobile ? imgMobile : imgDesktop} alt="Header Image" className="headerImg" />
         </div>
         <div className="section2">
           <h1 className="title">
