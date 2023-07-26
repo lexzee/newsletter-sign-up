@@ -66,6 +66,9 @@
         color: $grey;
       }
     }
+    .email:hover, .email:focus{
+    border: 1px green solid;
+    }
     .alert{
       color: red;
       margin: -1rem 0 1rem 0;

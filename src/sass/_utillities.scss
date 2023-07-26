@@ -38,6 +38,10 @@ img{
   border-radius: .5rem;
   background-color: $charcoal-grey;
   color: white;
+
+  &:hover{
+    background: linear-gradient(90deg, $tomato, $tomato, rgb(249, 46, 0));
+  }
 }
 %h1{
   font-weight: 700;
